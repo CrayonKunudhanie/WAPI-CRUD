@@ -21,6 +21,7 @@ class Kontak extends Component
     public $kontak_id;
     public $deleteKontakId;
     public $isModalOpen = false;
+    public $gajadi;
 
 
 
@@ -44,6 +45,7 @@ class Kontak extends Component
         ]);
 
         $this->reset(['nama', 'no_hp', 'email', 'facebook']);
+        $this->isVisible = false;
     }
 
     public function edit($id)
@@ -76,23 +78,26 @@ class Kontak extends Component
         $this->isVisible = false;
     }
 
-    public function delete( ){
+    public function delete(){
         $id = $this->kontak_id;
+        $this->isModalOpen = true;
         ListKontak::find($id)->delete();
         $this->reset(['kontak_id', 'isModalOpen']);
     }
 
     public function delete_confirmation($id)
     {
-        $this->kontak_id = $id;
         $this->isModalOpen = true;
+        $this->kontak_id = $id;
 
     }
 
     public function batal()
     {
-        $this->isVisible = false;
+        $this->isModalOpen = false;
+        $this->isVisible = false;  
     }
+
 
     public function render()
     {

@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
     <style>
         .active {
-            background-color: #065f46; /* bg-green-700 */
+            background-color: #065f46;
+            /* bg-green-700 */
         }
     </style>
 </head>
 
 <body class="flex bg-gray-100">
 
+    <!-- Sidebar -->
     <div class="flex">
         <aside class="w-64 bg-green-900 text-white p-4">
             <div class="text-2xl font-bold mb-8">ADMIN MENU</div>
@@ -97,9 +100,11 @@
         </aside>
     </div>
 
+    <!-- Main Content -->
     <div class="flex flex-col flex-1 p-6">
-        <header class="flex items-center justify-between bg-white p-6 rounded shadow">
-            <h1 class="text-2xl font-bold">KONTAK</h1>
+        <!-- Header -->
+        <header class="flex items-center justify-between bg-white p-6 rounded shadow mb-6">
+            <h1 class="text-2xl font-bold">Setting</h1>
             <div class="flex items-center">
                 <div class="mr-6">
                     <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full">1000 credit</span>
@@ -113,25 +118,111 @@
                     </svg>
                     <span class="absolute top-0 right-0 bg-red-600 text-white rounded-full px-1 text-xs">2</span>
                 </div>
-                <div class="ml-6">
+                <div class="ml-6 flex items-center">
                     <img src="src/about.jpg" alt="Profile" class="w-10 h-10 rounded-full">
                     <span class="ml-2">Mr. Paijo</span>
                 </div>
             </div>
         </header>
 
-        <div class="flex flex-col space-y-4">
-            @livewire('kontak')
-            @livewireScripts
-            
-            @livewire('grup-kontak-component')
-            @livewireScripts
-    
+        <!-- Form -->
+        <div class="bg-white p-6 rounded shadow">
+            <form class="grid grid-cols-2 gap-6">
+                <!-- Left Column -->
+                <div>
+                    <div class="mb-4 flex items-center">
+                        <img src="https://via.placeholder.com/100" alt="Foto Profil"
+                            class="w-24 h-24 rounded-full mr-4">
+                        <button type="button" class="bg-blue-500 text-white py-2 px-4 rounded">Pilih Foto</button>
+                    </div>
+                    <div class="mb-4">
+                        <label for="nama" class="block text-gray-700">Nama*</label>
+                        <input type="text" id="nama" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700">Email*</label>
+                        <input type="email" id="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700">Password*</label>
+                        <input type="password" id="password"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password-confirm" class="block text-gray-700">Konfirmasi Password*</label>
+                        <input type="password" id="password-confirm"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="whatsapp" class="block text-gray-700">No. Handphone/Whatsapp*</label>
+                        <input type="tel" id="whatsapp" pattern="[0-9]{11,15}"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="facebook" class="block text-gray-700">Akun Facebook</label>
+                        <input type="text" id="facebook" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="instagram" class="block text-gray-700">Akun Instagram</label>
+                        <input type="text" id="instagram"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <div class="mb-4">
+                        <label for="nama-perusahaan" class="block text-gray-700">Nama Perusahaan*</label>
+                        <input type="text" id="nama-perusahaan"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="alamat" class="block text-gray-700">Alamat*</label>
+                        <textarea id="alamat" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="provinsi" class="block text-gray-700">Provinsi*</label>
+                        <select id="provinsi" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <option>Pilih Provinsi</option>
+                            <!-- Add options for all provinces in Indonesia -->
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="kota" class="block text-gray-700">Kota*</label>
+                        <select id="kota" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <option>Pilih Kota</option>
+                            <!-- Add options for cities based on selected province -->
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Status Penggunaan</label>
+                        <input type="text" value="Trial" disabled
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Expired Date</label>
+                        <input type="text" value="21 Juli 2024" disabled
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Register Date</label>
+                        <input type="text" value="6 Juni 2024" disabled
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm bg-gray-100">
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="col-span-2 text-right">
+                    <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Simpan</button>
+                </div>
+            </form>
         </div>
-    
+    </div>
+
     <script>
         // JavaScript to add 'active' class to the current link
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const links = document.querySelectorAll('aside a');
             const currentPath = window.location.pathname.split('/').pop();
             links.forEach(link => {
@@ -142,6 +233,6 @@
         });
     </script>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 
+</html>
