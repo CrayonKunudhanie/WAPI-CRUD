@@ -13,3 +13,11 @@ Route::get('/contact', function () {
 Route::get('/msg', function () {
     return view('msg');
 });
+
+Route::get('/dashboard', function () {
+    return view('index');
+}); 
+
+Route::get('/buy', function() {
+    return view('buy');
+});

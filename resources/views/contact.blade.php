@@ -19,7 +19,7 @@
         <aside class="w-64 bg-green-900 text-white p-4">
             <div class="text-2xl font-bold mb-8">ADMIN MENU</div>
             <nav class="flex flex-col space-y-4">
-                <a href="index.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/dashboard') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
