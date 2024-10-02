@@ -8,13 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .active {
-            background-color: #065f46; /* bg-green-700 */
+            background-color: #065f46;
+            /* bg-green-700 */
         }
     </style>
 </head>
 
 <body class="flex bg-gray-100">
 
+    <!-- Sidebar -->
     <div class="flex">
         <aside class="w-64 bg-green-900 text-white p-4">
             <div class="text-2xl font-bold mb-8">ADMIN MENU</div>
@@ -27,7 +29,7 @@
                     </svg>
                     Dashboard
                 </a>
-                <a href="bc.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/broadcast') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -35,7 +37,7 @@
                     </svg>
                     Broadcast
                 </a>
-                <a href="contact.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/contact') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,7 +45,7 @@
                     </svg>
                     Contact
                 </a>
-                <a href="msg.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/message') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -51,7 +53,7 @@
                     </svg>
                     Template Message
                 </a>
-                <a href="draft.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/draft') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,7 +61,7 @@
                     </svg>
                     Draft
                 </a>
-                <a href="package.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/package') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -67,7 +69,8 @@
                     </svg>
                     Package
                 </a>
-                <a href="notif.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/notification') }}"
+                    class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -76,7 +79,7 @@
                     Notification
                 </a>
                 <hr class="border-t border-gray-300 my-2">
-                <a href="settings.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/setting') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -85,7 +88,7 @@
                     </svg>
                     Settings
                 </a>
-                <a href="logout.html" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
+                <a href="{{ url('/logout') }}" class="py-2.5 px-6 bg-green-900 hover:bg-green-800 flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -123,25 +126,24 @@
         <div class="flex flex-col space-y-4">
             @livewire('kontak')
             @livewireScripts
-            
+
             @livewire('grup-kontak-component')
             @livewireScripts
-    
+
         </div>
-    
-    <script>
-        // JavaScript to add 'active' class to the current link
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('aside a');
-            const currentPath = window.location.pathname.split('/').pop();
-            links.forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('active');
-                }
+
+        <script>
+            // JavaScript to add 'active' class to the current link
+            document.addEventListener('DOMContentLoaded', function() {
+                const links = document.querySelectorAll('aside a');
+                const currentPath = window.location.pathname.split('/').pop();
+                links.forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
             });
-        });
-    </script>
+        </script>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
-
