@@ -4,11 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Menu</title>
+    <title>Pay</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+        .active {
+            background-color: #065f46;
+            /* bg-green-700 */
+        }
+    </style>
 </head>
 
+
+
 <body class="flex bg-gray-100">
+
     <!-- Sidebar -->
     <div class="flex">
         <aside class="w-64 min-h-screen bg-green-900 text-white p-4">
@@ -85,11 +95,9 @@
         </aside>
     </div>
 
-    <!-- Main Content -->
     <div class="flex flex-col flex-1 p-6">
-        <!-- Header -->
         <header class="flex items-center justify-between bg-white p-6 rounded shadow">
-            <h1 class="text-2xl font-bold">Pembelian</h1>
+            <h1 class="text-2xl font-bold">KONTAK</h1>
             <div class="flex items-center">
                 <div class="mr-6">
                     <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full">1000 credit</span>
@@ -110,12 +118,26 @@
             </div>
         </header>
 
-        @livewire('buy')
-        @livewireScripts
+        <div class="flex flex-col space-y-4">
+            @livewire('custompay')
+            @livewireScripts
 
-    </div>
+        </div>
 
 
+        <script>
+            // JavaScript to add 'active' class to the current link
+            document.addEventListener('DOMContentLoaded', function() {
+                const links = document.querySelectorAll('aside a');
+                const currentPath = window.location.pathname.split('/').pop();
+                links.forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        </script>
 </body>
+
 
 </html>

@@ -4,11 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Menu</title>
+    <title>Custom Order</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .active {
+            background-color: #065f46;
+            /* bg-green-700 */
+        }
+    </style>
 </head>
 
+
+
 <body class="flex bg-gray-100">
+
     <!-- Sidebar -->
     <div class="flex">
         <aside class="w-64 min-h-screen bg-green-900 text-white p-4">
@@ -89,7 +98,7 @@
     <div class="flex flex-col flex-1 p-6">
         <!-- Header -->
         <header class="flex items-center justify-between bg-white p-6 rounded shadow">
-            <h1 class="text-2xl font-bold">Pembelian</h1>
+            <h1 class="text-2xl font-bold">KONTAK</h1>
             <div class="flex items-center">
                 <div class="mr-6">
                     <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full">1000 credit</span>
@@ -110,12 +119,64 @@
             </div>
         </header>
 
-        @livewire('buy')
-        @livewireScripts
+
+
+        <div class="flex flex-col md:flex-row gap-4 mt-6">
+            <div class="min-w-full bg-white pt-5 p-7 rounded-lg shadow-lg">
+                <h1 class="text-2xl font-bold">PESANAN ANDA</h1>
+
+                <div class="mx-auto bg-white p-6 rounded-lg mt-6 border-2 border-black relative">
+                    <!-- ID User Field -->
+                    <span
+                        class="absolute top-0 right-0 bg-green-100 text-green-500 bold px-3 py-1 top-2 right-2 rounded-tr-lg rounded-full text-sm">AKTIF</span>
+                    <h3 class="text-xl font-bold mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Necessitatibus, earum!</h3>
+                    <p class="mt-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit hic adipisci illum.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae fuga ut harum.</p>
+                    <p class="mt-1 mb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum ullam
+                        asperiores id doloremque harum.</p>
+                    <div class="absolute bottom-2 right-2">
+                        <a href="#" class="text-blue-600 text-sm">View details -></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4 mt-6">
+            <div class="min-w-full bg-white pt-5 p-7 rounded-lg shadow-lg">
+                <h1 class="text-2xl font-bold">PESANAN ANDA</h1>
+
+                <div class="mx-auto bg-white p-6 rounded-lg mt-6 border-2 border-black relative">
+                    <!-- ID User Field -->
+                    <span
+                        class="absolute top-0 right-0 bg-red-200 text-red-700 bold px-3 py-1 top-2 right-2 rounded-tr-lg rounded-full text-sm">NON
+                        AKTIF</span>
+                    <h3 class="text-xl font-bold mt-4">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus at atque architecto commodi
+                        officia.</p>
+                    <p class="mt-1 mb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum ullam
+                        asperiores id doloremque harum.</p>
+                    <div class="absolute bottom-2 right-2">
+                        <a href="#" class="text-blue-600 text-sm">View details -></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-
-
+    <script>
+        // JavaScript to add 'active' class to the current link
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('aside a');
+            const currentPath = window.location.pathname.split('/').pop();
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
+
 
 </html>

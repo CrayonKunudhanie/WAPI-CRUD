@@ -6,12 +6,16 @@
             <button class="bg-black text-white px-4 py-2 rounded-lg" wire:click="tambahgrup">Tambah list
                 grup</button>
         </div>
+        <div class="mb-6">
+            <input type="text" id="katakunci" wire:model.live="katakunci" placeholder="Cari Grup"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+        </div>
         <table class="w-full border-collapse">
             <thead>
                 <tr>
                     <th class="border-b-2 p-2">No</th>
                     <th class="border-b-2 p-2">Nama Grup</th>
-                    <th class="border-b-2 p-2">Jumlah Grup</th>
+                    <th class="border-b-2 p-2">Jumlah Kontak</th>
                     <th class="border-b-2 p-2">Aksi</th>
                 </tr>
             </thead>
@@ -24,7 +28,8 @@
                         <td class="border-b p-2 text-center">{{ $grup->jumlah_kontak }}</td>
                         <td class="border-b p-2 text-center">
                             <!-- Edit Button -->
-                            <button wire:click="editgrup({{ $grup->id }})" class="text-green-600 hover:text-green-800">
+                            <button wire:click="editgrup({{ $grup->id }})"
+                                class="text-green-600 hover:text-green-800">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -34,7 +39,8 @@
                                 </svg>
                             </button>
                             <!-- Delete Button -->
-                            <button wire:click="confirmdelete({{ $grup->id }})" class="text-red-600 hover:text-red-800">
+                            <button wire:click="confirmdelete({{ $grup->id }})"
+                                class="text-red-600 hover:text-red-800">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
@@ -57,67 +63,71 @@
 
 
     @if ($isGrupVisible)
-    <div id="tamKon" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-3/4">
-            <h3 id="judul" name="judul" class="text-lg font-semibold mb-4 text-center text-green-600">
-                @if ($grup_id)
-                    Edit Grup
-                @else
-                    Tambah Grup
-                @endif
-            </h3>
+        <div id="tamKon" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-3/4">
+                <h3 id="judul" name="judul" class="text-lg font-semibold mb-4 text-center text-green-600">
+                    @if ($grup_id)
+                        Edit Grup
+                    @else
+                        Tambah Grup
+                    @endif
+                </h3>
 
-            <!-- Input Nama Grup -->
-            <div class="mb-6">
-                <label for="nama_grup" class="block text-sm font-medium text-gray-700">Nama Grup</label>
-                <input type="text" wire:model="nama_grup" id="nama_grup" placeholder="Nama Grup" 
-                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" />
-            </div>
+                <!-- Input Nama Grup -->
+                <div class="mb-6">
+                    <label for="nama_grup" class="block text-sm font-medium text-gray-700">Nama Grup</label>
+                    <input type="text" wire:model="nama_grup" id="nama_grup" placeholder="Nama Grup"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" />
+                </div>
 
-            <!-- Tabel Daftar Kontak -->
-            <div class="overflow-x-auto">
-                <table class="table-auto w-full bg-white shadow-md rounded">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-4 py-2">No</th>
-                            <th class="px-4 py-2">Nama Kontak</th>
-                            <th class="px-4 py-2">No. Telepon</th>
-                            <th class="px-4 py-2">Grup Kontak</th>
-                            <th class="px-4 py-2">Pilih</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($kontaks as $index => $kontak)
-                            <tr class="border-t">
-                                <td class="px-4 py-2 text-center">{{ $index + 1 }}</td>
-                                <td class="px-4 py-2">{{ $kontak->nama }}</td>
-                                <td class="px-4 py-2">{{ $kontak->no_hp }}</td>
-                                <td class="px-4 py-2">
-                                    @foreach ($kontak->grups as $grup)
-                                        {{ $grup->nama_grup }}@if(!$loop->last), @endif
-                                    @endforeach
-                                </td>
-                                <td class="px-4 py-2 text-center">
-                                    <input type="checkbox" wire:model="selected_kontak" value="{{ $kontak->id }}" class="form-checkbox h-5 w-5 text-green-600">
-                                </td>
+                <!-- Tabel Daftar Kontak -->
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full bg-white shadow-md rounded">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-2">No</th>
+                                <th class="px-4 py-2">Nama Kontak</th>
+                                <th class="px-4 py-2">No. Telepon</th>
+                                <th class="px-4 py-2">Grup Kontak</th>
+                                <th class="px-4 py-2">Pilih</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @foreach ($kontaks as $index => $kontak)
+                                <tr class="border-t">
+                                    <td class="px-4 py-2 text-center">{{ $index + 1 }}</td>
+                                    <td class="px-4 py-2">{{ $kontak->nama }}</td>
+                                    <td class="px-4 py-2">{{ $kontak->no_hp }}</td>
+                                    <td class="px-4 py-2">{{ $kontak->grups->count() }}
+                                    </td>
+                                    <td class="px-4 py-2 text-center">
+                                        <input type="checkbox" wire:model="selected_kontak" value="{{ $kontak->id }}"
+                                            class="form-checkbox h-5 w-5 text-green-600">
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="mt-5">
+                        {{ $kontaks->links() }}
+                    </div>
+                </div>
 
-            <!-- Tombol Simpan/Update -->
-            <div class="mt-6 flex justify-between">
-                @if ($grup_id)
-                    <button class="bg-green-600 text-white py-2 px-4 rounded" wire:click="updategrup">UPDATE</button>
-                @else
-                    <button class="bg-green-600 text-white py-2 px-4 rounded" wire:click="tambahgrup">SIMPAN</button>
-                @endif
-                <button type="button" class="bg-red-600 text-white py-2 px-4 rounded" wire:click="batal">Batal</button>
+                <!-- Tombol Simpan/Update -->
+                <div class="mt-6 flex justify-between">
+                    @if ($grup_id)
+                        <button class="bg-green-600 text-white py-2 px-4 rounded"
+                            wire:click="updategrup">UPDATE</button>
+                    @else
+                        <button class="bg-green-600 text-white py-2 px-4 rounded"
+                            wire:click="tambahgrup">SIMPAN</button>
+                    @endif
+                    <button type="button" class="bg-red-600 text-white py-2 px-4 rounded"
+                        wire:click="batal">Batal</button>
+                </div>
             </div>
         </div>
-    </div>
-@endif
+    @endif
 
 
 

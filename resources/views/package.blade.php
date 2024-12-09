@@ -137,7 +137,8 @@
                     <h3 class="text-lg font-bold mb-2">5000 credit</h3>
                     <p class="text-sm text-gray-600 mb-2">Berlaku 30 hari</p>
                     <p class="text-xl font-bold mb-4">Rp. 4.500,00</p>
-                    <a href="buy.html" class="block text-center bg-green-500 text-white py-2 rounded">Beli</a>
+                    <a href="{{ url('/buy') }}"
+                        class="block text-center bg-green-500 text-white py-2 rounded">Beli</a>
                 </div>
                 <!-- Card 2 -->
                 <div class="bg-white p-6 rounded shadow relative">

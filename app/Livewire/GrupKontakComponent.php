@@ -19,6 +19,9 @@ class GrupKontakComponent extends Component
     public $updatedatagrup = false;
     public $isGrupVisible = false;
     public $isModalGrupOpen = false;
+    public $katakunci = '';
+
+
 
     public function tambahgrup()
     {
@@ -31,12 +34,14 @@ class GrupKontakComponent extends Component
 
         $grup = GrupKontak::create([
             'nama_grup' => $this->nama_grup,
-            'jumlah_kontak' => count($this->selected_kontak),
+            'jumlah_kontak' =>  count($this->selected_kontak),
         ]);
 
         $grup->kontak()->attach($this->selected_kontak);
 
         $this->refreshgrup();
+
+        $this->isGrupVisible = false;
     }
 
     private function refreshgrup()
@@ -48,17 +53,12 @@ class GrupKontakComponent extends Component
 
     public function editgrup($id)
     {
+        $this->isGrupVisible = true;
         $grup = GrupKontak::find($id);
-
-        if ($grup) {
-            $this->grup_id = $grup->id; // Set grup_id properly
-            $this->nama_grup = $grup->nama_grup;
-            $this->selected_kontak = $grup->kontak->pluck('id')->toArray();
-    
-            $this->updatedatagrup = true; // Edit mode is active
-        } else {
-            session()->flash('error', 'Group not found!'); // Error handling
-        }
+        $this->grup_id = $grup->id;
+        $this->nama_grup = $grup->nama_grup;
+        $this->selected_kontak = $grup->kontak->pluck('id')->toArray();
+        $this->updatedatagrup = true;
     }
 
 
@@ -71,18 +71,16 @@ class GrupKontakComponent extends Component
 
         $grup = GrupKontak::find($this->grup_id);
 
-        if($grup) {
+        if ($grup) {
             $grup->update([
-            'nama_grup' => $this->nama_grup,
-            'jumlah_kontak' => count($this->selected_kontak),
+                'nama_grup' => $this->nama_grup,
+                'jumlah_kontak' => count($this->selected_kontak),
             ]);
 
             $grup->kontak()->sync($this->selected_kontak);
 
-            $this->resetForm();
-            $this->updatedatagrup = false;
+            $this->isGrupVisible = false;
         }
-
     }
 
 
@@ -92,11 +90,17 @@ class GrupKontakComponent extends Component
         $this->isModalGrupOpen = true;
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $grup = GrupKontak::findOrFail($id)->delete();
-        $grup->kontak()->detach();
-        $grup->delete();
+        $id = $this->grup_id;
+        $grup = GrupKontak::find($id);
+
+        if ($grup) {
+            $grup->delete();
+        } else {
+            $this->addError('grup_id', 'Grup Not Found');
+        }
+
         $this->isModalGrupOpen = false;
     }
 
@@ -112,13 +116,15 @@ class GrupKontakComponent extends Component
 
     public function render()
     {
-        // Ambil data grup dengan paginasi
-        $dataGrup = GrupKontak::orderBy('created_at', 'asc')->paginate(5);
+        if ($this->katakunci != null) {
+            $dataGrup = GrupKontak::where('nama_grup', 'like', '%' . $this->katakunci . '%')
+                ->orderBy('nama_grup', 'asc')
+                ->paginate(5);
+        } else {
+            $dataGrup = GrupKontak::orderBy('created_at', 'asc')->paginate(5);
+        }
 
-        // Ambil semua kontak
-        $kontaks = ListKontak::all();
-
-        // Return view dan oper variabel dataGrup dan kontaks ke dalam compact
+        $kontaks = ListKontak::paginate(5);
         return view('livewire.grup-kontak-component', compact('dataGrup', 'kontaks'));
     }
 }

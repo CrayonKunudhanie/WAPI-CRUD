@@ -22,6 +22,7 @@ class Kontak extends Component
     public $deleteKontakId;
     public $isModalOpen = false;
     public $gajadi;
+    public $katakunci;
 
 
 
@@ -56,7 +57,6 @@ class Kontak extends Component
         $this->no_hp = $data->no_hp;
         $this->email = $data->email;
         $this->facebook = $data->facebook;
-
         $this->updatedata = true;
         $this->kontak_id = $id;
     }
@@ -74,34 +74,48 @@ class Kontak extends Component
         $validated = $this->validate($rules);
         $data = ListKontak::find($this->kontak_id);
         $data->update($validated);
-        $this->reset(['nama', 'no_hp', 'email', 'facebook', 'kontak_id']);
+        // $this->reset(['nama', 'no_hp', 'email', 'facebook', 'kontak_id']);
         $this->isVisible = false;
     }
 
-    public function delete(){
-        $id = $this->kontak_id;
+
+    public function delete()
+    {
+        $id = $this->kontak_id;  // Get the ID from the class property
         $this->isModalOpen = true;
-        ListKontak::find($id)->delete();
-        $this->reset(['kontak_id', 'isModalOpen']);
+        $kontak = ListKontak::find($id);
+
+        if ($kontak) {
+            $kontak->delete();
+        } else {
+            $this->addError('kontak_id', 'Contact not found.');
+        }
     }
+
 
     public function delete_confirmation($id)
     {
         $this->isModalOpen = true;
         $this->kontak_id = $id;
-
     }
 
     public function batal()
     {
         $this->isModalOpen = false;
-        $this->isVisible = false;  
+        $this->isVisible = false;
     }
 
 
     public function render()
     {
-        $data = ListKontak::orderBy('nama', 'asc')->paginate(5);
+        if ($this->katakunci != null) {
+            $data = ListKontak::where('nama', 'like', '%' . $this->katakunci . '%')
+                ->orderBy('nama', 'asc')
+                ->paginate(5);
+        } else {
+            $data = ListKontak::paginate(5);
+        }
+
         return view('livewire.kontak', ['dataKontak' => $data]);
     }
 }

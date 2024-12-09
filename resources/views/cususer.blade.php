@@ -4,11 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Menu</title>
+    <title>Custom User</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .active {
+            background-color: #065f46;
+            /* bg-green-700 */
+        }
+    </style>
 </head>
 
+
+
 <body class="flex bg-gray-100">
+
     <!-- Sidebar -->
     <div class="flex">
         <aside class="w-64 min-h-screen bg-green-900 text-white p-4">
@@ -89,33 +98,141 @@
     <div class="flex flex-col flex-1 p-6">
         <!-- Header -->
         <header class="flex items-center justify-between bg-white p-6 rounded shadow">
-            <h1 class="text-2xl font-bold">Pembelian</h1>
-            <div class="flex items-center">
-                <div class="mr-6">
-                    <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full">1000 credit</span>
-                </div>
+            <h1 class="text-2xl font-bold">
+            </h1>
+            <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                 <div class="relative">
-                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 14.158V11a6.002 6.002 0 00-5-5.917V5a2 2 0 10-4 0v.083A6.002 6.002 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m8 0v1a3 3 0 11-6 0v-1m6 0H9">
-                        </path>
-                    </svg>
+                    <button>
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 14.158V11a6.002 6.002 0 00-5-5.917V5a2 2 0 10-4 0v.083A6.002 6.002 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m8 0v1a3 3 0 11-6 0v-1m6 0H9">
+                            </path>
+                        </svg>
+                    </button>
                     <span class="absolute top-0 right-0 bg-red-600 text-white rounded-full px-1 text-xs">2</span>
                 </div>
-                <div class="ml-6">
-                    <img src="src/about.jpg" alt="Profile" class="w-10 h-10 rounded-full">
-                    <span class="ml-2">Mr. Paijo</span>
+                <div>
+                    <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full">1000 credit</span>
+                </div>
+                <div>
+                    <span class="">Mr. Paijo</span>
+                </div>
+                <div class="relative">
+                    <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
                 </div>
             </div>
         </header>
 
-        @livewire('buy')
-        @livewireScripts
+        <div class="flex flex-col space-y-4">
+            <div class="w-full min-h-screen mx-auto bg-white pt-11 p-7 rounded-lg shadow-lg mt-6"
+                style="border-radius:2rem 2rem 0 0">
+                <!-- Tabel pertama -->
+                <div class="overflow-x-auto">
+                    <table class="w-full mb-24">
+                        <thead>
+                            <tr class="bg-green-900 text-white">
+                                <th class="border-b-2 p-4">Parameter</th>
+                                <th class="border-b-2 p-4">Value</th>
+                                <th class="border-b-2 p-4">Parameter</th>
+                                <th class="border-b-2 p-4">Value</th>
+                            </tr>
+                            <tr>
+                                <th class="border-b-2 p-4 text-sm italic">Right now</th>
+                                <th class="border-b-2 p-4 text-sm italic"></th>
+                                <th class="border-b-2 p-4 text-sm italic">Last 30 Days</th>
+                                <th class="border-b-2 p-4 text-sm italic"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border-b p-3 text-center">Usser Trial</td>
+                                <td class="border-b p-3 text-center">48</td>
+                                <td class="border-b p-3 text-center">Usser Trial</td>
+                                <td class="border-b p-3 text-center">289</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 text-center">Usser Trial</td>
+                                <td class="p-3 text-center">50</td>
+                                <td class="p-3 text-center">Usser Trial</td>
+                                <td class="p-3 text-center">550</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tabel kedua -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-green-900 text-white">
+                                <th class="border-r-2 p-4"></th>
+                                <th class="border-r-2 p-4">Today</th>
+                                <th class="border-r-2 p-4">Yesterday</th>
+                                <th class="border-r-2 p-4">8 Juni 2024</th>
+                                <th class="border-r-2 p-4">9 Juni 2024</th>
+                                <th class="border-r-2 p-4">10 Juni 2024</th>
+                                <th class="border-r-2 p-4">11 Juni 2024</th>
+                                <th class="border-l-2 p-4">12 Juni 2024</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border-b p-3 text-center">Usser Trial</td>
+                                <td class="border-b p-3 text-center">4</td>
+                                <td class="border-b p-3 text-center">6</td>
+                                <td class="border-b p-3 text-center">4</td>
+                                <td class="border-b p-3 text-center">6</td>
+                                <td class="border-b p-3 text-center">5</td>
+                                <td class="border-b p-3 text-center">7</td>
+                                <td class="border-b p-3 text-center">3</td>
+                            </tr>
+                            <tr>
+                                <td class="border-b p-3 text-center">Usser Credit</td>
+                                <td class="border-b p-3 text-center">2</td>
+                                <td class="border-b p-3 text-center">3</td>
+                                <td class="border-b p-3 text-center">2</td>
+                                <td class="border-b p-3 text-center">5</td>
+                                <td class="border-b p-3 text-center">5</td>
+                                <td class="border-b p-3 text-center">6</td>
+                                <td class="border-b p-3 text-center">2</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 text-center">Usser Credit</td>
+                                <td class="p-3 text-center">Rp120.000,00</td>
+                                <td class="p-3 text-center">Rp75.000,00</td>
+                                <td class="p-3 text-center">Rp80.000,00</td>
+                                <td class="p-3 text-center">Rp100.000,00</td>
+                                <td class="p-3 text-center">Rp110.000,00</td>
+                                <td class="p-3 text-center">Rp120.000,00</td>
+                                <td class="p-3 text-center">Rp100.000,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-
+    </div>
+    <script>
+        // JavaScript to add 'active' class to the current link
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('aside a');
+            const currentPath = window.location.pathname.split('/').pop();
+            links.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
+
 
 </html>
